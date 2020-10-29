@@ -2,63 +2,13 @@ import React from "react";
 import clsx from "clsx";
 
 import { Video, Star, Phone, Paperclip, Send, Smile } from "react-feather";
-import john from "./assets/john.jpeg";
-import kristen from "./assets/kristen.jpg";
-import readytodie from "./assets/readytodie.jpg";
 
-const thread = [
-  {
-    user: kristen,
-    text: "It goes a little something like this.",
-    time: "12:37",
-    type: "received",
-  },
-  {
-    user: kristen,
-    text:
-      "It was all a dream, I used to read Word Up magazine Salt'n'Pepa and Heavy D up in the limousine",
-    time: "12:38",
-    type: "received",
-  },
-  {
-    user: john,
-    text: "Did you ever Hang' pictures on your wall?",
-    time: "12:39",
-    type: "sent",
-  },
-  {
-    user: kristen,
-    text:
-      "Yes I did! Every Saturday! Rap Attack, Mr. Magic, Marley Marl. I even let my tape rock 'til my tape popped. Smokin' weed and bamboo, sippin' on private stock.  But this was way back, when I had the red and black lumberjack with the hat to match.",
-    time: "12:40",
-    type: "received",
-  },
-  {
-    user: john,
-    text: "Haha awesome,  I think I know the album your looking. for",
-    time: "12:43",
-    type: "sent",
-  },
-  {
-    user: john,
-    time: "12:45",
-    type: "sent",
-    card: {
-      image: readytodie,
-      title: "Ready to Die",
-      album: "The Notorious B.I.G",
-      ratings: 95,
-      price: "$12.99",
-    },
-  },
-];
-
-const Header = () => {
+const Header = ({ info }) => {
   return (
     <div className="flex justify-between h-16 border-b border-gray-400">
       <div className="flex px-5 items-center">
         <p className="font-medium">
-          Kristen McKellar
+          {info.name}
           <span className="font-light"> is typing...</span>
         </p>
       </div>
@@ -208,11 +158,12 @@ const Message = ({ isReceived, text, user, time, card }) => {
   );
 };
 
-const Chat = () => {
+const Chat = ({ user = {} }) => {
+  let { info, thread = [] } = user;
   return (
     <div className="chat w-full lg:w-5/12 sm:w-9/12 md:5/12">
       <div className="flex-1  justify-between flex flex-col h-screen">
-        <Header />
+        <Header info={info} />
         <div
           id="messages"
           className="flex flex-col space-y-4 p-3 overflow-y-auto"

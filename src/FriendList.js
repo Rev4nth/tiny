@@ -20,28 +20,28 @@ const users = [
   {
     name: "Claire Sharwood",
     chat: "My selfie game is lacking can you",
-    time: "5 min",
+    time: "10 min",
     image: claire,
     isOnline: false,
   },
   {
     name: "Kristen Mckellar",
     chat: "Where is the nearest place to",
-    time: "5 min",
+    time: "2 min",
     image: kristen,
     isOnline: false,
   },
   {
     name: "Shaun Gardner",
     chat: "Ok that sounds perfect",
-    time: "5 min",
+    time: "30 min",
     image: shaun,
     isOnline: true,
   },
   {
     name: "Mace Windu",
     chat: "Protect the senator at all costs",
-    time: "5 min",
+    time: "38 min",
     image: mace,
     isOnline: true,
   },
@@ -54,12 +54,13 @@ const users = [
   },
 ];
 
-const User = ({ name, chat, image, time, active, isOnline }) => {
+const User = ({ name, chat, image, time, active, isOnline, handleClick }) => {
   return (
     <div
       className={`flex text-white px-4 items-center justify-between cursor-pointer hover:bg-gray-700 ${
         active && "border-l-2 border-blue-500"
       }`}
+      onClick={() => handleClick(name)}
     >
       <div className="w-1/6 relative  border-b border-gray-700 py-5">
         {isOnline && (
@@ -92,7 +93,7 @@ const User = ({ name, chat, image, time, active, isOnline }) => {
   );
 };
 
-const FriendList = () => {
+const FriendList = ({ handleClick, user }) => {
   return (
     <div className="friend-list w-3/12 overflow-auto hidden lg:block xl:block">
       <div className="relative px-4 h-16 flex items-center">
@@ -107,14 +108,15 @@ const FriendList = () => {
       </div>
 
       <div>
-        {users.map((user) => (
+        {users.map((userInfo) => (
           <User
-            name={user.name}
-            chat={user.chat}
-            time={user.time}
-            image={user.image}
-            active={user.name === "Kristen Mckellar"}
-            isOnline={user.isOnline}
+            name={userInfo.name}
+            chat={userInfo.chat}
+            time={userInfo.time}
+            image={userInfo.image}
+            handleClick={handleClick}
+            active={userInfo.name === user.info.name}
+            isOnline={userInfo.isOnline}
           />
         ))}
       </div>

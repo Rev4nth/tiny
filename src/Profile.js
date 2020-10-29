@@ -4,16 +4,6 @@ import { Bell, ChevronDown, MoreHorizontal, Circle } from "react-feather";
 import kristen from "./assets/kristen.jpg";
 import messenger from "./assets/messenger.png";
 
-const user = {
-  info: {
-    nickName: "Killa Kella",
-    tel: "072 143 9920",
-    dob: "July 12, 1988",
-    gender: "Female",
-    language: "English",
-  },
-};
-
 const Item = ({ label, value }) => {
   return (
     <div className="flex border-b border-gray-300 py-4 justify-between text-sm flex-col lg:flex-row">
@@ -23,7 +13,8 @@ const Item = ({ label, value }) => {
   );
 };
 
-const Profile = () => {
+const Profile = ({ user = {} }) => {
+  const info = user.info;
   return (
     <div className="profile lg:w-3/12 sm:w-3/12 md:3/12 hidden sm:block overflow-auto">
       <div className="flex justify-between items-center border-b border-gray-300 h-16 px-4">
@@ -51,21 +42,21 @@ const Profile = () => {
         </div>
         <div className="py-2 flex flex-col items-center">
           <img
-            src={kristen}
+            src={info.image}
             alt="avatar"
             className="rounded-full w-24 h-24 object-cover mb-4"
           ></img>
-          <h3 className="text-2xl font-medium text-center">Kirsten Mckellar</h3>
-          <p className="text-gray-600">Cape Town, RSA</p>
+          <h3 className="text-2xl font-medium text-center">{info.name}</h3>
+          <p className="text-gray-600">{info.place}</p>
         </div>
       </div>
 
       <div className="px-6 py-3">
-        <Item label="Nickname:" value={user.info.nickName} />
-        <Item label="Tel:" value={user.info.tel} />
-        <Item label="Date of Birth:" value={user.info.dob} />
-        <Item label="Gender :" value={user.info.gender} />
-        <Item label="Language :" value={user.info.language} />
+        <Item label="Nickname:" value={info?.nickName} />
+        <Item label="Tel:" value={info?.tel} />
+        <Item label="Date of Birth:" value={info?.dob} />
+        <Item label="Gender :" value={info?.gender} />
+        <Item label="Language :" value={info?.language} />
       </div>
     </div>
   );
