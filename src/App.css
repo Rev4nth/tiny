@@ -7,6 +7,10 @@
   width: 80px;
 }
 
+.sidebar .active {
+  background-color: #282e36;
+}
+
 .menu {
   background-color: #282e36;
 }
