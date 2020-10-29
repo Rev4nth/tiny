@@ -8,7 +8,7 @@ const MenuItem = ({ label, value, active }) => {
         active && "bg-gray-700"
       }`}
     >
-      <p className="text-gray-400">{label}</p>
+      <p className="text-gray-400 truncate">{label}</p>
       {value && <p className="font-medium"> {value}</p>}
     </button>
   );
@@ -16,7 +16,7 @@ const MenuItem = ({ label, value, active }) => {
 
 const Menu = () => {
   return (
-    <div className="menu w-2/12 text-white px-6">
+    <div className="menu w-2/12 text-white md:px-4 lg:px-6 hidden lg:block xl:block">
       <div className="flex justify-between py-4 pl-2 items-center h-16">
         <h2 className="text-2xl font-medium">Inbox</h2>
         <button className="focus:outline-none p-2 border border-gray-600 text-center rounded-full">

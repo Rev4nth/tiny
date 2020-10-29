@@ -9,7 +9,11 @@ import nimbuzz from "./assets/nimbuzz.png";
 
 const SidebarItem = ({ image, name, active }) => {
   return (
-    <button className={`p-4 hover:bg-gray-800 ${active && "active"}`}>
+    <button
+      className={`p-4 hover:bg-gray-800 focus:outline-none ${
+        active && "active"
+      }`}
+    >
       <img src={image} alt={name} />
     </button>
   );
@@ -18,7 +22,7 @@ const SidebarItem = ({ image, name, active }) => {
 const Sidebar = () => {
   return (
     <div className="sidebar flex flex-col items-center pl-2">
-      <button className="p-4">
+      <button className="p-4 focus:outline-none">
         <Menu color={"white"} />
       </button>
 

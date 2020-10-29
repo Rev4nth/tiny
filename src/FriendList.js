@@ -1,6 +1,5 @@
 import React from "react";
-import { Search } from "react-feather";
-import avatar from "./avatar.jpeg";
+import { Search, Circle } from "react-feather";
 import { MoreHorizontal } from "react-feather";
 
 import matt from "./assets/matt.jpg";
@@ -23,14 +22,14 @@ const users = [
     chat: "My selfie game is lacking can you",
     time: "5 min",
     image: claire,
-    isOnline: true,
+    isOnline: false,
   },
   {
     name: "Kristen Mckellar",
     chat: "Where is the nearest place to",
     time: "5 min",
     image: kristen,
-    isOnline: true,
+    isOnline: false,
   },
   {
     name: "Shaun Gardner",
@@ -51,22 +50,28 @@ const users = [
     chat: "So tell the voice inside your..",
     time: "49 min",
     image: kanye,
-    isOnline: true,
+    isOnline: false,
   },
 ];
 
-const User = ({ name, chat, image, time, active }) => {
+const User = ({ name, chat, image, time, active, isOnline }) => {
   return (
     <div
       className={`flex text-white px-4 items-center justify-between cursor-pointer hover:bg-gray-700 ${
         active && "border-l-2 border-blue-500"
       }`}
     >
-      <div className="w-1/6  border-b border-gray-700 py-5">
+      <div className="w-1/6 relative  border-b border-gray-700 py-5">
+        {isOnline && (
+          <span className="absolute top-0 left-0 mt-3">
+            <Circle size={5} fill={"#2dc100"} stroke={"#2dc100"} />
+          </span>
+        )}
+
         <img
           src={image}
           alt="avatar"
-          className="rounded-full w-12 h-12 object-cover"
+          className="rounded-full w-8 h-8 object-cover md:w-10 md:w-10"
         />
       </div>
 
@@ -77,14 +82,19 @@ const User = ({ name, chat, image, time, active }) => {
 
       <div className="flex w-1/6 flex-col items-end">
         <MoreHorizontal size={18} />
-        <span className="text-xs	text-gray-600">{time}</span>
+        <span
+          className={`text-xs	${active ? "text-gray-200" : "text-gray-600"}`}
+        >
+          {time}
+        </span>
       </div>
     </div>
   );
 };
+
 const FriendList = () => {
   return (
-    <div className="friend-list w-3/12 overflow-auto">
+    <div className="friend-list w-3/12 overflow-auto hidden lg:block xl:block">
       <div className="relative px-4 h-16 flex items-center">
         <div className="absolute pin-r pin-t  mr-3 ml-3">
           <Search color={"white"} size={18} />
@@ -104,6 +114,7 @@ const FriendList = () => {
             time={user.time}
             image={user.image}
             active={user.name === "Kristen Mckellar"}
+            isOnline={user.isOnline}
           />
         ))}
       </div>
